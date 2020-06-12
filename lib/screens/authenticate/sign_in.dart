@@ -5,7 +5,6 @@ import 'package:reuni_gen/shared/constants.dart';
 import 'package:reuni_gen/shared/loading.dart';
 
 class SignIn extends StatefulWidget {
-  // ToggleView
   final Function toggleView;
   SignIn({this.toggleView});
 
@@ -14,19 +13,14 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-  // Auth
   final AuthService _auth = AuthService();
-  // Validation
   final _formKey = GlobalKey<FormState>();
-
-  // Loading Widget
+  String error = '';
   bool loading = false;
 
-  // Text
+  // text field state
   String email = '';
   String password = '';
-  // Erreur
-  String error = '';
 
   @override
   Widget build(BuildContext context) {
@@ -54,33 +48,28 @@ class _SignInState extends State<SignIn> {
                 key: _formKey,
                 child: Column(
                   children: <Widget>[
-                    Text(
-                      'Réunigen',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 30.0),
-                    ),
+                    SizedBox(height: 20.0),
                     TextFormField(
-                      validator: (val) =>
-                          val.isEmpty ? 'Entrer un email' : null,
-                      decoration: textInputDecoration.copyWith(
-                          hintText: 'Adresse email'),
+                      decoration:
+                          textInputDecoration.copyWith(hintText: 'Adresse Email'),
+                      validator: (val) => val.isEmpty ? 'Entrer un email valide' : null,
                       onChanged: (val) {
                         setState(() => email = val);
                       },
                     ),
-                    SizedBox(height: 10.0),
+                    SizedBox(height: 20.0),
                     TextFormField(
-                      validator: (val) => val.length < 6
-                          ? 'Entrer un mot de passe valide (6 caractères min)'
-                          : null,
-                      decoration: textInputDecoration.copyWith(
-                          hintText: 'Mot de passe'),
                       obscureText: true,
+                      decoration:
+                          textInputDecoration.copyWith(hintText: 'Entrer un mot de passe'),
+                      validator: (val) => val.length < 6
+                          ? 'Entrer un mot de passe valide (6+ caractères)'
+                          : null,
                       onChanged: (val) {
                         setState(() => password = val);
                       },
                     ),
-                    SizedBox(height: 10.0),
+                    SizedBox(height: 20.0),
                     RaisedButton(
                         color: Colors.pink[400],
                         child: Text(
@@ -88,17 +77,15 @@ class _SignInState extends State<SignIn> {
                           style: TextStyle(color: Colors.white),
                         ),
                         onPressed: () async {
-                          // Loading True
-                          setState(() => loading = true);
-                          // Si le formulaire est valide
                           if (_formKey.currentState.validate()) {
+                            setState(() => loading = true);
                             dynamic result = await _auth
                                 .signInWithEmailAndPassword(email, password);
                             if (result == null) {
                               setState(() {
                                 loading = false;
                                 error =
-                                    'Veuillez entrer des identifiants valide';
+                                    'Identifiants incorrectes';
                               });
                             }
                           }
