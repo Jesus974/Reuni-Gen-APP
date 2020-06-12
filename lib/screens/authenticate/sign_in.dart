@@ -2,6 +2,7 @@ import 'package:reuni_gen/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:reuni_gen/shared/constants.dart';
+import 'package:reuni_gen/shared/loading.dart';
 
 class SignIn extends StatefulWidget {
   // ToggleView
@@ -18,6 +19,9 @@ class _SignInState extends State<SignIn> {
   // Validation
   final _formKey = GlobalKey<FormState>();
 
+  // Loading Widget
+  bool loading = false;
+
   // Text
   String email = '';
   String password = '';
@@ -26,7 +30,7 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+     return loading ? Loading() : Scaffold(
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
         backgroundColor: Colors.brown[300],
@@ -78,12 +82,15 @@ class _SignInState extends State<SignIn> {
                     style: TextStyle(color: Colors.white),
                   ),
                   onPressed: () async {
+                    // Loading True
+                    setState(() => loading = true);
                     // Si le formulaire est valide
                     if (_formKey.currentState.validate()) {
                       dynamic result = await _auth.signInWithEmailAndPassword(
                           email, password);
                       if (result == null) {
                         setState(() {
+                          loading = false;
                           error = 'L\'adresse email ou le mot de passe n\est pas reconnu';
                         });
                       }
