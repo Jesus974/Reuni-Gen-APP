@@ -13,13 +13,17 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  // Authentification
   final AuthService _auth = AuthService();
+  // Formulaire Validation
   final _formKey = GlobalKey<FormState>();
+  // Erreur
   String error = '';
+  // Loading Statut
   bool loading = false;
-
-  // text field state
+  // Email
   String email = '';
+  // Mot de passe
   String password = '';
 
   @override
@@ -50,9 +54,10 @@ class _SignInState extends State<SignIn> {
                   children: <Widget>[
                     SizedBox(height: 20.0),
                     TextFormField(
-                      decoration:
-                          textInputDecoration.copyWith(hintText: 'Adresse Email'),
-                      validator: (val) => val.isEmpty ? 'Entrer un email valide' : null,
+                      decoration: textInputDecoration.copyWith(
+                          hintText: 'Adresse Email'),
+                      validator: (val) =>
+                          val.isEmpty ? 'Entrer un email valide' : null,
                       onChanged: (val) {
                         setState(() => email = val);
                       },
@@ -60,8 +65,8 @@ class _SignInState extends State<SignIn> {
                     SizedBox(height: 20.0),
                     TextFormField(
                       obscureText: true,
-                      decoration:
-                          textInputDecoration.copyWith(hintText: 'Entrer un mot de passe'),
+                      decoration: textInputDecoration.copyWith(
+                          hintText: 'Entrer un mot de passe'),
                       validator: (val) => val.length < 6
                           ? 'Entrer un mot de passe valide (6+ caractères)'
                           : null,
@@ -84,8 +89,7 @@ class _SignInState extends State<SignIn> {
                             if (result == null) {
                               setState(() {
                                 loading = false;
-                                error =
-                                    'Identifiants incorrectes';
+                                error = 'Identifiants incorrectes';
                               });
                             }
                           }
