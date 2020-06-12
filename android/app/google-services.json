@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "536385302004",
+    "firebase_url": "https://reunigen-949a9.firebaseio.com",
+    "project_id": "reunigen-949a9",
+    "storage_bucket": "reunigen-949a9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:536385302004:android:e0a33b9a7f5e05a4cc5da1",
+        "android_client_info": {
+          "package_name": "com.rg974.reuni_gen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "536385302004-euilhb4k7f09afjtbsltjf6n8so327qg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYokg23ZxaOhtmZRsxg2hz5Fj8HN_sr2k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "536385302004-euilhb4k7f09afjtbsltjf6n8so327qg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
