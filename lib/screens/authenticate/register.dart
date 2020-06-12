@@ -59,7 +59,7 @@ class _RegisterState extends State<Register> {
                   setState(() => email = val);
                 },
               ),
-              SizedBox(height: 20.0),
+              SizedBox(height: 10.0),
               TextFormField(
                 validator: (val) => val.length < 6
                     ? 'Entrer un mot de passe valide (6 caractères min)'
@@ -70,7 +70,7 @@ class _RegisterState extends State<Register> {
                   setState(() => password = val);
                 },
               ),
-              SizedBox(height: 20.0),
+              SizedBox(height: 10.0),
               RaisedButton(
                   color: Colors.pink[400],
                   child: Text(
