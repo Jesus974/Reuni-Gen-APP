@@ -40,7 +40,6 @@ class _SignInState extends State<SignIn> {
                         end: Alignment.bottomRight,
                         colors: <Color>[Colors.red, Colors.blue])),
               ),
-              backgroundColor: Colors.brown[300],
               elevation: 0.0,
               title: Text('Réuni-Gen'),
               actions: <Widget>[
