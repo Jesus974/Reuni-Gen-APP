@@ -31,11 +31,18 @@ class _SignInState extends State<SignIn> {
     return loading
         ? Loading()
         : Scaffold(
-            backgroundColor: Colors.brown[100],
+            resizeToAvoidBottomPadding: false,
             appBar: AppBar(
+              flexibleSpace: Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: <Color>[Colors.red, Colors.blue])),
+              ),
               backgroundColor: Colors.brown[300],
               elevation: 0.0,
-              title: Text('Se connecter'),
+              title: Text('Réuni-Gen'),
               actions: <Widget>[
                 FlatButton.icon(
                     icon: Icon(MdiIcons.accountPlus),
@@ -47,6 +54,13 @@ class _SignInState extends State<SignIn> {
               centerTitle: true,
             ),
             body: Container(
+              height: double.infinity,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: NetworkImage(
+                          "https://consort-group.com/wp-content/uploads/2017/01/2-assurance-et-sante-357061904.png"),
+                      fit: BoxFit.cover)),
               padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
               child: Form(
                 key: _formKey,
@@ -55,7 +69,7 @@ class _SignInState extends State<SignIn> {
                     SizedBox(height: 20.0),
                     TextFormField(
                       decoration: textInputDecoration.copyWith(
-                          hintText: 'Adresse Email'),
+                          hintText: 'Entrer une adresse email'),
                       validator: (val) =>
                           val.isEmpty ? 'Entrer un email valide' : null,
                       onChanged: (val) {
@@ -76,10 +90,19 @@ class _SignInState extends State<SignIn> {
                     ),
                     SizedBox(height: 20.0),
                     RaisedButton(
-                        color: Colors.pink[400],
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                        color: Colors.white,
                         child: Text(
                           'Se connecter',
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(
+                            color: Color(0xFF527DAA),
+                            letterSpacing: 1.5,
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'OpenSans',
+                          ),
                         ),
                         onPressed: () async {
                           if (_formKey.currentState.validate()) {

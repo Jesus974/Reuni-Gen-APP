@@ -32,11 +32,18 @@ class _RegisterState extends State<Register> {
     return loading
         ? Loading()
         : Scaffold(
+            resizeToAvoidBottomPadding: false,
             backgroundColor: Colors.brown[100],
             appBar: AppBar(
-              backgroundColor: Colors.brown[300],
+              flexibleSpace: Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: <Color>[Colors.red, Colors.blue])),
+              ),
               elevation: 0.0,
-              title: Text('Créer un compte'),
+              title: Text('Réuni-Gen'),
               actions: <Widget>[
                 FlatButton.icon(
                     icon: Icon(MdiIcons.login),
@@ -48,6 +55,13 @@ class _RegisterState extends State<Register> {
               centerTitle: true,
             ),
             body: Container(
+              height: double.infinity,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: NetworkImage(
+                          "https://consort-group.com/wp-content/uploads/2017/01/2-assurance-et-sante-357061904.png"),
+                      fit: BoxFit.cover)),
               padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
               child: Form(
                 key: _formKey,
@@ -56,7 +70,7 @@ class _RegisterState extends State<Register> {
                     SizedBox(height: 20.0),
                     TextFormField(
                       decoration: textInputDecoration.copyWith(
-                          hintText: 'Adresse email'),
+                          hintText: 'Entrer une adresse email'),
                       validator: (val) =>
                           val.isEmpty ? 'Entrer un email valide' : null,
                       onChanged: (val) {
@@ -65,8 +79,8 @@ class _RegisterState extends State<Register> {
                     ),
                     SizedBox(height: 20.0),
                     TextFormField(
-                      decoration:
-                          textInputDecoration.copyWith(hintText: 'Mot de passe'),
+                      decoration: textInputDecoration.copyWith(
+                          hintText: 'Entrer un mot de passe'),
                       obscureText: true,
                       validator: (val) => val.length < 6
                           ? 'Entrer un mot de passe valide (6+ caractères)'
@@ -77,10 +91,19 @@ class _RegisterState extends State<Register> {
                     ),
                     SizedBox(height: 20.0),
                     RaisedButton(
-                        color: Colors.pink[400],
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                        color: Colors.white,
                         child: Text(
-                          'Créer compte',
-                          style: TextStyle(color: Colors.white),
+                          'Se créer un compte',
+                          style: TextStyle(
+                            color: Color(0xFF527DAA),
+                            letterSpacing: 1.5,
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'OpenSans',
+                          ),
                         ),
                         onPressed: () async {
                           if (_formKey.currentState.validate()) {
