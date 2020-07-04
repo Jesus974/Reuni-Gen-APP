@@ -6,6 +6,7 @@ import 'package:reuni_gen/services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:reuni_gen/route/text2speech.dart';
 
 class Home extends StatelessWidget {
   final AuthService _auth = AuthService();
@@ -59,8 +60,15 @@ class Home extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Icon(Icons.chat, color: Colors.white),
-                    Text("CHAT", style: TextStyle(color: Colors.white))
+                    FlatButton(
+                      child: Icon(Icons.zoom_out_map, color: Colors.white),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => MyApp()),
+                        );
+                      },
+                    )
                   ],
                 ),
               ),
@@ -70,8 +78,15 @@ class Home extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Icon(Icons.home, color: Colors.white),
-                    Text("CHAT", style: TextStyle(color: Colors.white))
+                    FlatButton(
+                      child: Icon(Icons.mic, color: Colors.white),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => MyApp()),
+                        );
+                      },
+                    )
                   ],
                 ),
               ),
